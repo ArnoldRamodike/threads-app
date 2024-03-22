@@ -93,14 +93,11 @@ const AccountProfile = ({user, btnTitle}) => {
           path: pathname
     });
 
-
-    
-
-    // if (pathname === '/profile/edit') {
-    //   router.back();
-    // }else{
-    //   router.push('/');
-    // }
+    if (pathname === '/profile/edit') {
+      router.back();
+    }else{
+      router.push('/');
+    }
   }
 
   return (
@@ -123,7 +120,7 @@ const AccountProfile = ({user, btnTitle}) => {
                 <Input type="file" accept="image/*" placeholder="Upload a Photo" 
                     className="account-form_image-input" onChange={(e) => handleImage(e, field.onChange)}/>
               </FormControl>
-        
+              <FormMessage/>
             </FormItem>
           )}
         />
@@ -139,7 +136,7 @@ const AccountProfile = ({user, btnTitle}) => {
               <FormControl >
                 <Input type="text" className="account-form_input no-focus" {...field} />
               </FormControl>
-        
+              <FormMessage/>
             </FormItem>
           )}
         />
@@ -173,7 +170,7 @@ const AccountProfile = ({user, btnTitle}) => {
               <FormControl >
                 <Textarea rows={10} className="account-form_input no-focus" {...field} />
               </FormControl>
-        
+              <FormMessage/>
             </FormItem>
           )}
         />
