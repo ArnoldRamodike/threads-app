@@ -13,26 +13,30 @@ interface Params{
     path: string
 }
 
-export async function updateUser({userId, username, name, image, bio , path}: Params ) : Promise<void> {
-    connectToDb(); 
-        try{
-            await User.findOneAndUpdate(
-                {id: userId},
-                
-                {username: username.toLowerCase(),
-                 name,
-                 image,
-                 bio,
-                 onboarded: true,
-                },
-                {upsert: true}
-                );
-                if (path === '/profile/edit') {
-                    revalidatePath(path);
-                }
-        } catch (error: any) {
-            throw new Error(`Failed to create/update user: ${error.message}`);
-        }
+export async function updateUser({userId, username, name, image, bio, path }: Params ) : Promise<void> {
+
+    try {
+        connectToDb();
+        console.log("gets here");
+        
+        await User.findOneAndUpdate(
+          { id: userId },
+          {
+            username: username.toLowerCase(),
+            name,
+            bio,
+            image,
+            onboarded: true,
+          },
+          { upsert: true }
+        );
+        console.log("gets here for second time!!");
+        if (path === "/profile/edit") {
+          revalidatePath(path);
+      }
+      } catch (error: any) {
+        throw new Error(`Failed to create/update user: ${error.message}`);
+      }
 }
 
 export async function fetchUser( userId: String){
@@ -48,3 +52,4 @@ export async function fetchUser( userId: String){
         throw new Error(`Faliled to fetch user: ${error.message}`);
     }
 }
+
