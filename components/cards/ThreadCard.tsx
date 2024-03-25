@@ -29,7 +29,7 @@ interface Props{
 const ThreadCard = ({id, currentUserId, parentId, content, author, community, createdAt, comments, isComment}: Props) => {
   return (
     <>
-    <article className='flex w-full flex-col rounded-xl bg-dark-2 p-7'>
+    <article className={`flex w-full flex-col rounded-xl bg-dark-2 p-7 ${isComment ? 'px-0 xs:px-7': 'bg-dark-2 p-7'}`}>
         <div className="flex items-start justify-between">
             <div className="flex w-full flex-1 flex-row gap-4">
                 <div className="flex flex-col items-center">
@@ -56,7 +56,7 @@ const ThreadCard = ({id, currentUserId, parentId, content, author, community, cr
                          <Image src="/assets/repost.svg" alt='repost' width={24} height={24} className='cursor-pointer object-contain'/>
                          <Image src="/assets/share.svg" alt='share' width={24} height={24} className='cursor-pointer object-contain'/>
                         </div>
-                        {isComment && comments.length >0 && (
+                        {isComment && comments > 0 && (
                             <Link href={`/thread/${id}`} >
                                 <p className='mt-1 text-subtle-medium text-gray-1'>{comments.length} replies</p>
                             </Link>
