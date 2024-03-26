@@ -39,7 +39,7 @@ const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
 
     form.reset();
 
-    router.push('/');
+    // router.push('/');
 }
 
   return (
